@@ -1,0 +1,127 @@
+/* Colours live in one place so they're easy to change. */
+:root {
+  --paper: #faf8f4;
+  --ink: #2b2a28;
+  --muted: #77736c;
+  --accent: #b5452f;
+  --line: #e2ddd3;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.5;
+}
+
+header, main, footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+header {
+  padding-top: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-name {
+  font-size: 1.25rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a { color: var(--accent); }
+
+footer {
+  margin-top: 48px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Filter buttons */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+
+.filters a {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.filters a.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* The gallery grid: as many 220px-wide cards as fit on a row. */
+.grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card a {
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: white;
+  border: 1px solid var(--line);
+  transition: transform 0.2s;
+}
+
+.card a:hover img { transform: scale(1.03); }
+
+.card-title { display: block; margin-top: 8px; }
+.card-year  { color: var(--muted); font-size: 0.9rem; }
+
+/* One piece's page: picture on the left, details on the right
+   (stacked on a narrow phone screen). */
+.piece {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 700px) {
+  .piece { grid-template-columns: 1fr 1fr; }
+}
+
+.piece img {
+  width: 100%;
+  background: white;
+  border: 1px solid var(--line);
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+}
+
+dt { color: var(--muted); }
+dd { margin: 0; }
+
+.prev-next {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 32px;
+}
