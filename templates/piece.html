@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ piece.title }} · Fei's Origami{% endblock %}
+
+{% block content %}
+  <p><a href="{{ url_for('gallery') }}">&larr; Back to gallery</a></p>
+
+  <article class="piece">
+    <img src="{{ url_for('static', filename='images/' ~ piece.image) }}" alt="{{ piece.title }}">
+
+    <div>
+      <h1>{{ piece.title }}</h1>
+      <p>{{ piece.description }}</p>
+
+      <!-- dl = "description list": pairs of dt (term) and dd (its value) -->
+      <dl>
+        <dt>Year</dt>  <dd>{{ piece.year }}</dd>
+        <dt>Paper</dt> <dd>{{ piece.paper }}</dd>
+        <dt>Grid</dt>  <dd>{{ piece.grid }}</dd>
+        <dt>Tags</dt>
+        <dd>
+          {% for t in piece.tags %}
+            <a href="{{ url_for('gallery', tag=t) }}">{{ t }}</a>{% if not loop.last %}, {% endif %}
+          {% endfor %}
+        </dd>
+      </dl>
+    </div>
+  </article>
+
+  <nav class="prev-next">
+    <a href="{{ url_for('piece', slug=prev_piece.slug) }}">&larr; {{ prev_piece.title }}</a>
+    <a href="{{ url_for('piece', slug=next_piece.slug) }}">{{ next_piece.title }} &rarr;</a>
+  </nav>
+{% endblock %}

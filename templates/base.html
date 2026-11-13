@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Fei's Origami Tessellations{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!--
+    Every page "extends" this file, so the header and footer are written once.
+    Each page fills in the "content" block below with its own HTML.
+    (Careful: Jinja still reads its curly-brace tags inside HTML comments.)
+  -->
+  <header>
+    <a class="site-name" href="{{ url_for('gallery') }}">Fei's Origami Tessellations</a>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>Folded by Fei.</p>
+  </footer>
+</body>
+</html>

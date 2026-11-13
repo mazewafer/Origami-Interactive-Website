@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Gallery</h1>
+  <p>Flat paper, folded into repeating patterns of twists and pleats. Click a piece to see more.</p>
+
+  <!-- Filter buttons: each one is just a link that adds ?tag=... to the address -->
+  <nav class="filters">
+    <a href="{{ url_for('gallery') }}" class="{{ 'active' if not current_tag }}">All</a>
+    {% for t in tags %}
+      <a href="{{ url_for('gallery', tag=t) }}" class="{{ 'active' if t == current_tag }}">{{ t }}</a>
+    {% endfor %}
+  </nav>
+
+  {% if pieces %}
+    <ul class="grid">
+      {% for p in pieces %}
+        <li class="card">
+          <a href="{{ url_for('piece', slug=p.slug) }}">
+            <img src="{{ url_for('static', filename='images/' ~ p.image) }}" alt="{{ p.title }}">
+            <span class="card-title">{{ p.title }}</span>
+            <span class="card-year">{{ p.year }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No pieces with that tag yet.</p>
+  {% endif %}
+{% endblock %}
